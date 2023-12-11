@@ -1,5 +1,7 @@
+// import {jsPDF} from 'jspdf';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable'
 import jsonData from './data1.json';
 
 function App() {
@@ -35,13 +37,19 @@ function App() {
       });
     });
 
-    
-    doc.autoTable({
+    autoTable(doc, { html: '#my-table' })
+    autoTable(doc,{
       head: [headers],
       body: rows,
       startY: 20, 
       theme: 'striped', 
     });
+    // doc.autoTable({
+    //   head: [headers],
+    //   body: rows,
+    //   startY: 20, 
+    //   theme: 'striped', 
+    // });
 
     
     doc.save('user_brokers_report.pdf');
